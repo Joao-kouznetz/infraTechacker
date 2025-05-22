@@ -4,6 +4,8 @@ Nome do aluno: João Kouznetz Lemos Bresser Pereira
 
 Explicação do projeto: Ele retorna os dados de preço mais recentes da ação com o ticker `T``
 
+teste
+
 # Como rodar a aplicação?
 
 Para rodar a aplicação em a sua máquina local é apenas necessário utilizar o comando abaixo .
