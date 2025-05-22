@@ -15,8 +15,6 @@ Esse projeto tem como objetivo elaborar uma API RESTfull capaz de cadastrar e au
 
 # Como rodar a aplicação?
 
-Consegue acessar a aplicação acessada no seguinte link: [link codigo rodando na aws](http://a56a2d01abb4e409fb50de31aa7a7f2a-868540365.sa-east-1.elb.amazonaws.com/docs#/)
-
 Para rodar a aplicação em a sua máquina local é apenas necessário utilizar o comando abaixo .
 
 ``` zsh
@@ -92,13 +90,3 @@ services:
             timeout: 5s
             retries: 10
 ```
-
-# link video etapa 1
-
-[link video PROVA QUE APP FUNFA](<https://youtu.be/MNcifldxVqQ>)
-
-# link video etapa 2
-
-# Video Etapa 2
-
-[video etapa 2](https://youtu.be/dDHwxQs5pjQs)

@@ -4,8 +4,6 @@ Nome do aluno: João Kouznetz Lemos Bresser Pereira
 
 Explicação do projeto: Ele retorna os dados de preço mais recentes da ação com o ticker `T``
 
-teste
-
 # Como rodar a aplicação?
 
 Para rodar a aplicação em a sua máquina local é apenas necessário utilizar o comando abaixo .
@@ -23,7 +21,7 @@ docker-compose down
 # Como abrir a documentação
 
 Esse projeto tem dois tipos de documentação, uma feita com SWAGGERUI que é a
-documentação das apis e uma feita com Mkdocs. Para acessar a primeira  quando o projeto estiver rodando acessar a seguite url : `http://localhost:8000/docs`
+documentação das apis e uma feita com Mkdocs. Para acessar a primeira  quando o projeto estiver rodando acessar a seguite url : `http://localhost:8000/docs`. Para acessar a segunda ela esta de maneira on-line no github pages: da para acessar por esse link [documentacao](https://joao-kouznetz.github.io/infraTechacker/) : `https://joao-kouznetz.github.io/infraTechacker/`
 
 A segunda você pode acessar pelo link do github pages `https://joao-kouznetz.github.io/Projeto1/`
 pelos arquivos markdown na pasta `AppDocumentation/docs` ou de maneira mais estruturada voce roda o seguinte comando no terminal dentro da aba `appDocumeentation`

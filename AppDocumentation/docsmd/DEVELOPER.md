@@ -7,14 +7,21 @@ Fui inspirado pela  estrutura que esta sendo recomendada no seguinte github:
 A estrutura que eu fiz á  a seguinte:
 
 ```zsh
-├── app 
-│   ├── Dockerfile      # dockerfile utilizado para criar a imagme  
-│   ├── models.py      # global database models  
-│   ├── router.py  # router das apis  
-│   ├── database.py    # db connection related stuff  
-│   ├── requirements.py    # extensões do python  
-│   ├── schemas.py    # pydantic models  
-│   └── main.py  
+├── app/
+│   ├── auth-service/
+│   │   ├── database.py    # db connection related stuf 
+│   │   ├── Dockerfile      # dockerfile utilizado para criar a imagme  
+│   │   ├── main.py   
+│   │   ├── models.py      # global database models   
+│   │   ├── requirements.py    # extensões do python  
+│   │   ├── router.py  # router das apis  
+│   │   └── schemas.py    # pydantic models   
+│   └── consult-service/
+│       ├── Dockerfile      # dockerfile utilizado para criar a imagme  
+│       ├── main.py   
+│       ├── requirements.py    # extensões do python  
+│       ├── schemas.py    # pydantic models   
+│       └── security.py    # pydantic models   
 ├── AppDocumentation/  
 │   ├── amkdocs.yml #configuração da documentação
 │   └── docs/
@@ -28,8 +35,7 @@ A estrutura que eu fiz á  a seguinte:
 ├── requirements .txt  
 ├── .env  
 ├── .gitignore  
-├── docker-compose.yml # conteiner docker utilizado para testes
-└── docker-composeDEBELOPMENT.yml #conteiner docker utilizado em desenvolvimento
+└── docker-compose.yml # conteiner docker utilizado para testes
 ```
 
 No fim do documento tem a estrutura recomendada:

@@ -22,8 +22,6 @@ from typing import Union, Any
 from schema import Token, TokenData
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 
-# para fazer o scrapping
-import yfinance as yf
 
 load_dotenv()
 SALT = os.getenv("SALT")

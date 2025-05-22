@@ -32,7 +32,7 @@
 #             retries: 10
 services:
     app:
-        build: ./app/auth-service
+        build: ./app/auth_service
         ports:
             - "8000:8000"
             # ter portas abertas é ruim? como vou acessar se as portas?
@@ -46,7 +46,7 @@ services:
             - DB_PORT=3306
             - MYSQL_DATABASE=${MYSQL_DB:-db}
         volumes:
-            - ./app/auth-service:/usr/local/app
+            - ./app/auth_service:/usr/local/app
             # isso permite eu fazer alterações para desenvolvimento parece ser bem top
         depends_on:
             mysql:

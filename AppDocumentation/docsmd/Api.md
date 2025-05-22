@@ -4,8 +4,6 @@ A documentação da APi também pode ser obtida pelo swagger docs:
 
 é possivel encontrála no seguinte link:
 
-[link codigo rodando na aws](http://a56a2d01abb4e409fb50de31aa7a7f2a-868540365.sa-east-1.elb.amazonaws.com/docs#/)
-
 Esta API permite o gerenciamento de usuários, autenticação e acesso a informações de mercado.
 
 ---

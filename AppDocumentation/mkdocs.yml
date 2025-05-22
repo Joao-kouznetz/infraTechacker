@@ -4,6 +4,7 @@ site_dir: docs # onde vai o site index
 nav:
     - Home: index.md
     - Developer: DEVELOPER.md
+    - Settings: Settings.md
     - API: Api.md
     - AWS: PublicandoAWS.md
 theme: readthedocs

@@ -50,6 +50,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Settings/">Settings</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../Api/">API</a>
                 </li>
               </ul>
@@ -84,14 +88,21 @@
 <p>Fui inspirado pela  estrutura que esta sendo recomendada no seguinte github:
 <a href="https://github.com/zhanymkanov/fastapi-best-practices#1-project-structure-consistent--predictable">best practicies in fast-api</a></p>
 <p>A estrutura que eu fiz á  a seguinte:</p>
-<pre><code class="language-zsh">├── app 
-│   ├── Dockerfile      # dockerfile utilizado para criar a imagme  
-│   ├── models.py      # global database models  
-│   ├── router.py  # router das apis  
-│   ├── database.py    # db connection related stuff  
-│   ├── requirements.py    # extensões do python  
-│   ├── schemas.py    # pydantic models  
-│   └── main.py  
+<pre><code class="language-zsh">├── app/
+│   ├── auth-service/
+│   │   ├── database.py    # db connection related stuf 
+│   │   ├── Dockerfile      # dockerfile utilizado para criar a imagme  
+│   │   ├── main.py   
+│   │   ├── models.py      # global database models   
+│   │   ├── requirements.py    # extensões do python  
+│   │   ├── router.py  # router das apis  
+│   │   └── schemas.py    # pydantic models   
+│   └── consult-service/
+│       ├── Dockerfile      # dockerfile utilizado para criar a imagme  
+│       ├── main.py   
+│       ├── requirements.py    # extensões do python  
+│       ├── schemas.py    # pydantic models   
+│       └── security.py    # pydantic models   
 ├── AppDocumentation/  
 │   ├── amkdocs.yml #configuração da documentação
 │   └── docs/
@@ -105,8 +116,7 @@
 ├── requirements .txt  
 ├── .env  
 ├── .gitignore  
-├── docker-compose.yml # conteiner docker utilizado para testes
-└── docker-composeDEBELOPMENT.yml #conteiner docker utilizado em desenvolvimento
+└── docker-compose.yml # conteiner docker utilizado para testes
 </code></pre>
 <p>No fim do documento tem a estrutura recomendada:</p>
 <h1 id="autenticacao">Autenticação</h1>
@@ -213,7 +223,7 @@
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
         <a href=".." class="btn btn-neutral float-left" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../Api/" class="btn btn-neutral float-right" title="API">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../Settings/" class="btn btn-neutral float-right" title="Settings">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -239,7 +249,7 @@
       <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../Api/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../Settings/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
