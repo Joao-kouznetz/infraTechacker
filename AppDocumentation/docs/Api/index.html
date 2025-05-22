@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>API - App-Documentation</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "API";
+        var mkdocs_page_input_path = "Api.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> App-Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../DEVELOPER/">Developer</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">API</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#endpoints">Endpoints</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1-obter-todos-os-usuarios">1. Obter todos os usuários</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2-registrar-um-novo-usuario">2. Registrar um novo usuário</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#descricao-adiciona-um-novo-usuario-com-as-informacoes-fornecidas">Descrição: Adiciona um novo usuário com as informações fornecidas.</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#3-login-de-usuario">3. Login de usuário</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#4-obter-informacoes-do-usuario-autenticado">4. Obter informações do usuário autenticado</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#5-consultar-informacoes-do-usuario-autenticado">5. Consultar informações do usuário autenticado</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../PublicandoAWS/">AWS</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">App-Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">API</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="documentacao-da-api">Documentação da API</h1>
+<p>A documentação da APi também pode ser obtida pelo swagger docs:</p>
+<p>é possivel encontrála no seguinte link:</p>
+<p><a href="http://a56a2d01abb4e409fb50de31aa7a7f2a-868540365.sa-east-1.elb.amazonaws.com/docs#/">link codigo rodando na aws</a></p>
+<p>Esta API permite o gerenciamento de usuários, autenticação e acesso a informações de mercado.</p>
+<hr />
+<h2 id="endpoints">Endpoints</h2>
+<h3 id="1-obter-todos-os-usuarios">1. <strong>Obter todos os usuários</strong></h3>
+<ul>
+<li><strong>URL:</strong> <code>/usuarios/</code></li>
+<li><strong>Método:</strong> <code>GET</code></li>
+<li><strong>Parâmetros de Query:</strong></li>
+<li><code>offset</code> (int): Define o deslocamento para os resultados (padrão: <code>0</code>).</li>
+<li><code>limit</code> (int): Define o número máximo de resultados a serem retornados (máximo: <code>100</code>).</li>
+<li><strong>Resposta:</strong></li>
+<li><strong>Status:</strong> <code>200 OK</code></li>
+<li><strong>Corpo:</strong> Lista de usuários no formato do esquema <code>UserSchema</code>.</li>
+<li><strong>Tags:</strong> <code>Usuarios</code></li>
+<li><strong>Descrição:</strong> Retorna a lista de todos os usuários disponíveis (cadastrados).</li>
+</ul>
+<hr />
+<h3 id="2-registrar-um-novo-usuario">2. <strong>Registrar um novo usuário</strong></h3>
+<ul>
+<li><strong>URL:</strong> <code>/registrar/</code></li>
+<li><strong>Método:</strong> <code>POST</code></li>
+<li><strong>Parâmetros do Corpo:</strong></li>
+<li>Objeto do tipo <code>UserSchema</code> contendo as informações do usuário.</li>
+<li><strong>Resposta:</strong></li>
+<li><strong>Status:</strong> <code>201 Created</code></li>
+<li><strong>Corpo:</strong> Objeto <code>Token</code> com o token JWT gerado para o novo usuário.</li>
+<li><strong>Erros:</strong></li>
+<li><strong>Status:</strong> <code>409 Conflict</code> – Caso o e-mail já esteja cadastrado.</li>
+<li><strong>Tags:</strong> <code>Usuarios</code></li>
+<li>
+<h2 id="descricao-adiciona-um-novo-usuario-com-as-informacoes-fornecidas"><strong>Descrição:</strong> Adiciona um novo usuário com as informações fornecidas.</h2>
+</li>
+</ul>
+<p><img alt="alt text" src="../image-8.png" /></p>
+<hr />
+<h3 id="3-login-de-usuario">3. <strong>Login de usuário</strong></h3>
+<ul>
+<li><strong>URL:</strong> <code>/login</code></li>
+<li><strong>Método:</strong> <code>POST</code></li>
+<li><strong>Parâmetros do Corpo:</strong></li>
+<li>Objeto do tipo <code>UserSchemaValidate</code> contendo <code>email</code> e <code>senha</code>.</li>
+<li><strong>Resposta:</strong></li>
+<li><strong>Status:</strong> <code>200 OK</code></li>
+<li><strong>Corpo:</strong> Objeto <code>Token</code> com o token JWT gerado.</li>
+<li><strong>Erros:</strong></li>
+<li><strong>Status:</strong> <code>401 Unauthorized</code> – Caso o e-mail não esteja cadastrado ou a senha esteja incorreta.</li>
+<li><strong>Tags:</strong> <code>Usuarios</code></li>
+<li><strong>Descrição:</strong> Autentica um usuário e retorna o token JWT se as credenciais estiverem corretas.
+<img alt="alt text" src="../image-9.png" /></li>
+</ul>
+<hr />
+<h3 id="4-obter-informacoes-do-usuario-autenticado">4. <strong>Obter informações do usuário autenticado</strong></h3>
+<ul>
+<li><strong>URL:</strong> <code>/data</code></li>
+<li><strong>Método:</strong> <code>GET</code></li>
+<li><strong>Cabeçalhos:</strong></li>
+<li><code>Authorization: Bearer &lt;token&gt;</code></li>
+<li><strong>Resposta:</strong></li>
+<li><strong>Status:</strong> <code>200 OK</code></li>
+<li><strong>Corpo:</strong> Dados históricos de preços de fechamento da empresa "T".</li>
+<li><strong>Erros:</strong></li>
+<li><strong>Status:</strong> <code>401 Unauthorized</code> – Caso o token esteja expirado ou seja inválido.</li>
+<li><strong>Status:</strong> <code>403 Forbidden</code> – Caso o esquema de autenticação seja inválido.</li>
+<li><strong>Status:</strong> <code>404 Not Found</code> – Caso o usuário não seja encontrado.</li>
+<li><strong>Tags:</strong> <code>Usuarios</code></li>
+<li><strong>Descrição:</strong> Retorna detalhes históricos da empresa "T" (via Yahoo Finance) para o usuário autenticado.
+<img alt="alt text" src="../image-10.png" /></li>
+</ul>
+<hr />
+<h3 id="5-consultar-informacoes-do-usuario-autenticado">5. <strong>Consultar informações do usuário autenticado</strong></h3>
+<ul>
+<li><strong>URL:</strong> <code>/consultar</code></li>
+<li><strong>Método:</strong> <code>GET</code></li>
+<li><strong>Cabeçalhos:</strong></li>
+<li><code>Authorization: Bearer &lt;token&gt;</code></li>
+<li><strong>Resposta:</strong></li>
+<li><strong>Status:</strong> <code>200 OK</code></li>
+<li><strong>Corpo:</strong> Dados históricos de preços de fechamento da empresa "T".<ul>
+<li>Formato: Uma string contendo as datas e os preços de fechamento dos últimos 5 dias.</li>
+</ul>
+</li>
+<li><strong>Erros:</strong></li>
+<li><strong>Status:</strong> <code>401 Unauthorized</code> – Caso o token esteja expirado ou inválido.</li>
+<li><strong>Status:</strong> <code>403 Forbidden</code> – Caso o esquema de autenticação seja inválido.</li>
+<li><strong>Status:</strong> <code>404 Not Found</code> – Caso o usuário autenticado não seja encontrado.</li>
+<li><strong>Tags:</strong> <code>Usuarios</code></li>
+<li><strong>Descrição:</strong> Retorna os dados históricos de mercado da empresa "T" (via Yahoo Finance) para o usuário atualmente autenticado.
+<img alt="alt text" src="../image-10.png" /></li>
+</ul>
+<hr />
+<h1 id="testagem-endpoints">Testagem endpoints</h1>
+<h1 id="registrar">Registrar</h1>
+<h2 id="registrar-funcionando">Registrar Funcionando</h2>
+<p><img alt="imagemfuncionando" src="../image.png" /></p>
+<h2 id="registrar-ja-cadastrado">Registrar já cadastrado</h2>
+<p><img alt="imagem erro de cadastro" src="../image-1.png" /></p>
+<h1 id="login">Login</h1>
+<h2 id="login-funcionando">Login Funcionando</h2>
+<p><img alt="Imagem login funcionano" src="../image-2.png" /></p>
+<h2 id="login-com-email-nao-encontrado">Login com email não encontrado</h2>
+<p><img alt="Imagem email não encontrado" src="../image-3.png" /></p>
+<h2 id="login-senha-nao-encontrada">Login senha não encontrada</h2>
+<p><img alt="Imgem senha incorreta" src="../image-4.png" /></p>
+<h1 id="consultar">Consultar</h1>
+<h2 id="consultar-sem-login">Consultar sem login</h2>
+<p><img alt="Consulta sem autenticacão" src="../image-5.png" /></p>
+<h2 id="conulta-credenciais-invalidas">Conulta credenciais invalidas</h2>
+<p><img alt="Consulta com credenciais invalidas" src="../image-7.png" /></p>
+<h2 id="consulta-com-login">Consulta com login</h2>
+<p><img alt="Consulta com login" src="../image-6.png" /></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../DEVELOPER/" class="btn btn-neutral float-left" title="Developer"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../PublicandoAWS/" class="btn btn-neutral float-right" title="AWS">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../DEVELOPER/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../PublicandoAWS/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

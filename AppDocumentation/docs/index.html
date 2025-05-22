@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="None" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>App-Documentation</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Home";
+        var mkdocs_page_input_path = "index.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="." class="icon icon-home"> App-Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Home</a>
+    <ul class="current">
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="DEVELOPER/">Developer</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="Api/">API</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="PublicandoAWS/">AWS</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href=".">App-Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Home</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="porque-o-projeto-foi-desenvolvido">Porque o projeto foi desenvolvido?</h1>
+<p>Esse projeto tem como objetivo elaborar uma API RESTfull capaz de cadastrar e autenticar usuários. E dockernizar esse projeto para ser facilmente acessível.</p>
+<h1 id="tecnologias-utilizadas">Tecnologias utilizadas</h1>
+<ul>
+<li>FASTAPI (framework em python para desenvolvimento de APIs)</li>
+<li>SWAGGERUI (incluso no fastapi para desenvolvimento automático de documentação)</li>
+<li>PYDANTIC (método de tipagem para o python)</li>
+<li>JWT (método seguro para transmitir dados de maneira segura)</li>
+<li>SQLalchemy (ORM para conectar a base de dados)</li>
+<li>MYSQL (base de dados)</li>
+<li>Docker (método de conteinerização do aplicativo)</li>
+<li>MKDocs (maneira de fazer documentação utilizando markdown)</li>
+</ul>
+<h1 id="como-rodar-a-aplicacao">Como rodar a aplicação?</h1>
+<p>Consegue acessar a aplicação acessada no seguinte link: <a href="http://a56a2d01abb4e409fb50de31aa7a7f2a-868540365.sa-east-1.elb.amazonaws.com/docs#/">link codigo rodando na aws</a></p>
+<p>Para rodar a aplicação em a sua máquina local é apenas necessário utilizar o comando abaixo .</p>
+<pre><code class="language-zsh">docker compose up
+</code></pre>
+<p>e para descer o app fazer</p>
+<pre><code class="language-zsh">docker compose down
+</code></pre>
+<p>Caso deseje criar na maquina local é necessario mudar o <code>compose.yaml</code> para que ele de build e não rode com o arquivo</p>
+<ol>
+<li>Clonar o repositório</li>
+<li>Na pasta raiz do repositório copiar o docker-composeDEVELOPMENT para o arquivo docker-compose.yml</li>
+<li>Com o docker baixado rodar o seguinte comando; <code>docker compose up --build</code></li>
+<li>Com isso você vai ter criado a sua própria imagem do app, voce pode utilizar agora os comandos <code>docker compose up</code> e <code>docker compose down</code> para colocar no ar e retirar do ar sua aplicação.</li>
+</ol>
+<h1 id="como-abrir-a-documentacao">Como abrir a documentação</h1>
+<p>Esse projeto tem dois tipos de documentação, uma feita com SWAGGERUI que é a documentação das apis e uma feita com Mkdocs. Para acessar a primeira  quando o projeto estiver rodando acessar a seguite url : <code>http://localhost:8000/docs</code></p>
+<p>A segunda você pode acessar pelos srquivos markdown na pasta <code>AppDocumentation/docs</code> ou de maneira mais estruturada voce roda o seguinte comando no terminal dentro da aba <code>appDocumeentation</code></p>
+<pre><code class="language-bash">mkdocs serve
+</code></pre>
+<p>Com isso abrira uma url em que voce pode ler a documentação de forma mais organizada</p>
+<h1 id="link-para-imgagem-no-docker-hub">link para imgagem no docker hub</h1>
+<p><a href="https://hub.docker.com/repository/docker/joaokb/projeto1-app/general">link para docker hub</a></p>
+<h1 id="onde-o-composeyaml-esta">Onde o compose.yaml esta?</h1>
+<p>O arquivo compose.yaml está na raiz do projeto.</p>
+<p>Segue o codigo dele:</p>
+<pre><code class="language-yaml">services:
+    app:
+        image: joaokb/projeto1-app # Utilize a imagem publicada no Docker Hub
+        ports:
+            - &quot;8000:8000&quot;
+            # Portas abertas são necessárias para acessar o serviço fora do container.
+        environment:
+            - SECRET_KEY=${SECRET_KEY:-2e6e8cc741f246604c750dcc672fed67c877b2fe9f77eafaa41245ce91b5a0d3}
+            - sqlite_file_name=${sqlite_file_name:-database.db}
+            - salt=${salt:-18274393}
+            - MYSQL_USER=${MYSQL_USER:-user}
+            - MYSQL_PASSWORD=${MYSQL_PASSWORD:-cloud}
+            - DB_HOST=mysql
+            - DB_PORT=3306
+            - MYSQL_DATABASE=${MYSQL_DB:-db}
+        depends_on:
+            mysql:
+                condition: service_healthy
+
+    mysql:
+        image: mysql:8.0
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root_password}
+            MYSQL_USER: ${MYSQL_USER:-user}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD:-cloud}
+            MYSQL_DATABASE: ${MYSQL_DB:-db}
+        healthcheck:
+            test: [&quot;CMD&quot;, &quot;mysqladmin&quot;, &quot;ping&quot;, &quot;-h&quot;, &quot;localhost&quot;]
+            interval: 10s
+            timeout: 5s
+            retries: 10
+</code></pre>
+<h1 id="link-video-etapa-1">link video etapa 1</h1>
+<p><a href="https://youtu.be/MNcifldxVqQ">link video PROVA QUE APP FUNFA</a></p>
+<h1 id="link-video-etapa-2">link video etapa 2</h1>
+<h1 id="video-etapa-2">Video Etapa 2</h1>
+<p><a href="https://youtu.be/dDHwxQs5pjQs">video etapa 2</a></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="DEVELOPER/" class="btn btn-neutral float-right" title="Developer">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+      <span><a href="DEVELOPER/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = ".";</script>
+    <script src="js/theme_extra.js"></script>
+    <script src="js/theme.js"></script>
+      <script src="search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 1.6.1
+Build Date UTC : 2025-02-20 14:03:58.866206+00:00
+-->

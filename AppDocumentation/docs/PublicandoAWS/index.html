@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>AWS - App-Documentation</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "AWS";
+        var mkdocs_page_input_path = "PublicandoAWS.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> App-Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../DEVELOPER/">Developer</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Api/">API</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">AWS</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#pre-requisitos">Pré requisitos</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">App-Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">AWS</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="publicando-na-aws">Publicando na AWS</h1>
+<h2 id="pre-requisitos">Pré requisitos</h2>
+<ul>
+<li>ter uma conta aws com condiçoes de adiministrador</li>
+<li>Já ter imagens no docker-hub que rodam em arquitetura x86_64 caso não acesse <a href="https://docs.docker.com/build/building/multi-platform/">esse link</a> e faca a sua imagem docker rodar com a arquitetura</li>
+<li>Conta ter acesso Ao cloudShell</li>
+</ul>
+<h1 id="instrucoes">Instruções</h1>
+<ol>
+<li>Acesse o cloud shell e instale o eksctl para fazer isso é apenas rodar o comando abaixo: (pode rever no seguinte <a href="https://eksctl.io/installation/">link</a>:)</li>
+</ol>
+<pre><code class="language-zsh"># for ARM systems, set ARCH to: `arm64`, `armv6` or `armv7`
+ARCH=amd64
+PLATFORM=$(uname -s)_$ARCH
+
+curl -sLO &quot;https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_$PLATFORM.tar.gz&quot;
+
+# (Optional) Verify checksum
+curl -sL &quot;https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_checksums.txt&quot; | grep $PLATFORM | sha256sum --check
+
+tar -xzf eksctl_$PLATFORM.tar.gz -C /tmp &amp;&amp; rm eksctl_$PLATFORM.tar.gz
+
+sudo mv /tmp/eksctl /usr/local/bin
+</code></pre>
+<ol>
+<li>Criar os clusters em são paulo:</li>
+</ol>
+<pre><code class="language-zsh">eksctl create cluster --name projcomp --region sa-east-1 --nodes 2
+</code></pre>
+<ol>
+<li>Configurando</li>
+</ol>
+<pre><code class="language-zsh">aws eks --region sa-east-1 update-kubeconfig --name projcomp
+</code></pre>
+<ol>
+<li>Criando arquivo para dar deploy da minha aplicaçao <code>deployment.yaml</code>
+Segue o arquivo com variaveis de enviroment como exemplos:</li>
+</ol>
+<pre><code class="language-yaml">apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fastapi-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fastapi
+  template:
+    metadata:
+      labels:
+        app: fastapi
+    spec:
+      containers:
+        - name: fastapi
+          image: joaokb/projeto1-app:latest
+          ports:
+            - containerPort: 8000
+          env:
+            - name: SECRET_KEY
+              value: &quot;asdfj423419823he912b3912983h0982nr98n2948b928n492j903&quot;
+            - name: sqlite
+              value: &quot;dataaabase.db&quot;
+            - name: salt
+              value: &quot;salzinhotopppp&quot;
+            - name: MYSQL_USER
+              value: &quot;usuario&quot;
+            - name: MYSQL_PASSWORD
+              value: &quot;cloud&quot;
+            - name: DB_HOST
+              value: &quot;mysql&quot;
+            - name: DB_PORT
+              value: &quot;3306&quot;
+            - name: MYSQL_DATABASE
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: fastapi-service
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 8000
+  selector:
+    app: fastapi
+</code></pre>
+<ol>
+<li>Criando arquivo do deploy da database: <code>db-deployment.yaml</code></li>
+</ol>
+<p>variaveis de enveroment como exemplo:</p>
+<pre><code class="language-yaml">apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-db-cloud
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+        - name: mysql
+          image: mysql:8.0
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: &quot;root_password&quot;
+            - name: MYSQL_USER
+              value: &quot;user&quot;
+            - name: MYSQL_PASSWORD
+              value: &quot;cloud&quot;
+            - name: MYSQL_DATABASE
+              value: &quot;db&quot;
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+spec:
+  ports:
+</code></pre>
+<ol>
+<li>Aplicando os arquivos criados: (rode no CloudShell)</li>
+</ol>
+<pre><code class="language-zsh">kubectl apply -f deployment.yaml
+</code></pre>
+<ol>
+<li>Acesse a aplicação (aqui tem o link para ver onde ta publicado)</li>
+</ol>
+<pre><code class="language-zsh">kubectl get svc fastapi-service
+</code></pre>
+<ol>
+<li>Como debugar caso de problema:</li>
+</ol>
+<h2 id="kubectl-get-pods"><code>kubectl get pods</code></h2>
+<p>Esse comando é usado para listar todos os <strong>pods</strong> no cluster Kubernetes. Um <strong>pod</strong> é a menor unidade de implantação no Kubernetes e pode conter um ou mais containers.</p>
+<h3 id="exemplo-de-uso">Exemplo de uso</h3>
+<pre><code class="language-bash">kubectl get pods
+</code></pre>
+<h3 id="exemplo-de-saida">Exemplo de saída</h3>
+<pre><code>NAME                                READY   STATUS    RESTARTS   AGE
+fastapi-app-64757d454d-c7s72         1/1     Running   0          3d
+</code></pre>
+<hr />
+<h2 id="kubectl-get-deployments"><code>kubectl get deployments</code></h2>
+<p>O comando <code>kubectl get deployments</code> exibe uma lista dos "deployments" no cluster Kubernetes. Um "deployment" é uma configuração que especifica como o Kubernetes deve manter o número desejado de réplicas de um pod em execução. O comando é útil para visualizar o estado atual de cada deployment, como quantas réplicas estão sendo executadas, e se há algum erro nos pods.</p>
+<h3 id="exemplo-de-uso_1">Exemplo de uso</h3>
+<pre><code class="language-bash">kubectl get deployments
+</code></pre>
+<h3 id="exemplo-de-saida_1">Exemplo de saída</h3>
+<pre><code>NAME              DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+fastapi-app       1         1         1            1           3d
+</code></pre>
+<hr />
+<h2 id="kubectl-logs-pod-name"><code>kubectl logs &lt;pod-name&gt;</code></h2>
+<p>O comando <code>kubectl logs &lt;pod-name&gt;</code> exibe os logs de contêineres específicos dentro de um pod. Isso é útil para depuração e monitoramento, permitindo que você visualize a saída de processos dentro do contêiner. Caso o pod tenha múltiplos contêineres, você pode especificar qual contêiner visualizar.</p>
+<h3 id="exemplo-de-uso_2">Exemplo de uso</h3>
+<pre><code class="language-bash">kubectl logs fastapi-app-64757d454d-c7s72
+</code></pre>
+<h3 id="exemplo-de-saida_2">Exemplo de saída</h3>
+<pre><code>INFO: FastAPI app started on http://0.0.0.0:8000
+INFO: Uvicorn worker is ready to serve requests
+</code></pre>
+<hr />
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../Api/" class="btn btn-neutral float-left" title="API"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../Api/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

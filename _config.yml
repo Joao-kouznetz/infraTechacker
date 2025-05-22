@@ -1,0 +1,2 @@
+source: ./AppDocumentation/docs
+destination: ./_site
