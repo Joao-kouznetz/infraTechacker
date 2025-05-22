@@ -11,7 +11,10 @@ import os
 
 from sqlalchemy.pool import StaticPool
 
+# https://docs.sqlalchemy.org/en/20/tutorial/engine.html
+# Carregar variáveis de ambiente do arquivo .env
 load_dotenv()
+# # A url indica, qual é a database que utilizaremos,
 DATABASE_URL = os.getenv("DATABASE_URL") or (
     f"mysql+mysqlconnector://{os.getenv('MYSQL_USER')}:"
     f"{os.getenv('MYSQL_PASSWORD')}@{os.getenv('DB_HOST','mysql')}:"
@@ -26,22 +29,9 @@ else:
     engine = create_engine(DATABASE_URL)
 # criando database
 
-# https://docs.sqlalchemy.org/en/20/tutorial/engine.html
-# Carregar variáveis de ambiente do arquivo .env
-# load_dotenv()
 
-
-# # Obter o salt da variável de ambiente
-# DATABASE_URL = os.getenv(
-#     "DATABASE_URL",
-#     f"mysql+mysqlconnector://{os.getenv('MYSQL_USER')}:"
-#     + f"{os.getenv('MYSQL_PASSWORD')}@{os.getenv('DB_HOST','mysql')}:"
-#     + f"{os.getenv('DB_PORT','3306')}/{os.getenv('MYSQL_DATABASE')}",
-# )
 # # DATABASE_URL = f"mysql+mysqlconnector://{os.getenv('MYSQL_USER')}:{os.getenv('MYSQL_PASSWORD')}@mysql:{os.getenv('DB_PORT')}/{os.getenv('MYSQL_DATABASE')}"
 # engine = create_engine(DATABASE_URL)
-# # A url indica, qual é a database que utilizaremos,
-# # echo indica para colocar todos os SQL it emits to a Python logger that will write to standard out.
 
 
 def create_db_and_tables():
