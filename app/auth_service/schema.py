@@ -8,20 +8,20 @@ class User(BaseModel):
 
     model_config = {  # maneira mais facil de colocar exemplo
         "json_schema_extra": {
+            "unique": True,
             "examples": [
                 {
                     "nome": "Joao Bresser",
                     "email": "joao.bresserpereira@gmail.com",
                     "senha": "1234d",
                 }
-            ]
+            ],
         },
         "from_attributes": True,  # Permite a conversão de modelos ORM
     }
     id: UUID = Field(
         ...,
         default_factory=uuid4,  # ja gera automaticamento o uuid
-        unique=True,
         description="ID único referente ao usuario",
     )
     nome: str = Field(
